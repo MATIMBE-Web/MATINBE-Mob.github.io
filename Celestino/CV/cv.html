@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Desenvolvedor Web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+            --dark-bg: #111827;
+            --light-text: #f9fafb;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode {
+            --primary-color: #3b82f6;
+            --secondary-color: #2563eb;
+            --accent-color: #60a5fa;
+            --text-color: #f9fafb;
+            --light-bg: #111827;
+            --dark-bg: #1f2937;
+            --light-text: #f9fafb;
+            --card-bg: #1f2937;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 60px;
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .sidebar, .content {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 15px 0 5px;
+        }
+
+        .contact-info {
+            margin-bottom: 25px;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--accent-color);
+            width: 20px;
+        }
+
+        .skills {
+            margin-bottom: 25px;
+        }
+
+        .skill {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            background: var(--light-bg);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .languages {
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .language {
+            background: var(--light-bg);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .timeline {
+            position: relative;
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            padding-left: 30px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+        }
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 5px);
+            background: var(--primary-color);
+        }
+
+        .timeline-item:last-child:after {
+            display: none;
+        }
+
+        .date {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+            border-left: 4px solid var(--primary-color);
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .tech-tag {
+            background: var(--primary-color);
+            color: var(--light-text);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 30px 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .print-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .print-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .certifications {
+            margin-top: 20px;
+        }
+
+        .cert-item {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .cert-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        
+        .interests {
+            
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .interest {
+            background: var(--light-bg);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="profile-img" img src="1.jpg" alt="" >
+                <img src="1.jpg" alt="">
+                <i class="fas fa-user"></i>
+            </div>
+            <h1>Celestino Jorge Matimbe Júnior</h1>
+            <p class="title">Desenvolvedor Web Front-end</p>
+            <div class="badges">
+                <div class="badge">HTML5/CSS3</div>
+                <div class="badge">JavaScript</div>
+                <div class="badge">React</div>
+            </div>
+            <div class="social-links">
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="Blog"><i class="fab fa-dev"></i></a>
+                <a href="#" title="Medium"><i class="fab fa-medium"></i></a>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="contact-info">
+                    <h2>Contacto</h2>
+                    <p><i class="fas fa-envelope"></i> celestinomatimbe@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> (258) 846 949 595</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Maputo, Moçambique</p>
+                    <p><i class="fas fa-globe"></i> portfoliocelestino.com</p>
+                </div>
+                
+                <div class="skills">
+                    <h2>Habilidades Técnicas</h2>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>HTML5/CSS3</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>React</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Git/GitHub</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Java</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="languages">
+                    <h2>Idiomas</h2><br>
+                    <div class="language">Português - Nativo</div>
+                    <div class="language">Inglês - Fluente</div>
+                    <div class="language">Changana - Intermediário</div>
+                    <div class="language">Machope - Intermediário</div>
+                </div>
+                 
+                <div class="certifications">
+                    <h2>Certificações</h2>
+                    <div class="cert-item">Desenvolvimento Web Fullstack - Udemy (2023)</div>
+                    <div class="cert-item">JavaScript Moderno - Cod3r (2024)</div>
+                    <div class="cert-item">React Fundamentals - Rocketseat (2024)</div>
+                </div>
+                
+                <div class="interests">
+                    <h2>Interesses</h2>
+                    <div class="interest">UI/UX Design</div>
+                    <div class="interest">Tecnologias Emergentes</div>
+                    <div class="interest">Open Source</div>
+                    <div class="interest">Blogging Técnico</div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <section>
+                    <h2>Resumo Profissional</h2>
+                    <p>Desenvolvedor Web Júnior com foco em front-end, apaixonado por criar interfaces intuitivas e responsivas. Com conhecimentos em HTML5, CSS3, JavaScript e React, busco oportunidade para aplicar e expandir minhas habilidades em projetos desafiadores. Comprometido com aprendizado contínuo e melhores práticas de desenvolvimento.</p>
+                </section>
+                
+                <section>
+                    <h2>Experiência Profissional</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="date">2023 - Presente</div>
+                            <h3>Desenvolvedor Freelancer</h3>
+                            <p>Desenvolvimento de sites responsivos e aplicações web para clientes locais. Implementação de designs modernos com foco em experiência do usuário e performance.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">React</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="date">2022 - 2023</div>
+                            <h3>Estagiário em Desenvolvimento Web - TechSolutions Inc.</h3>
+                            <p>Suporte na manutenção de sites corporativos e desenvolvimento de componentes front-end. Participação em projetos de redesign de interfaces e implementação de features.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">HTML/CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Bootstrap</span>
+                                <span class="tech-tag">Git</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Formação Acadêmica</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="date">2024 - 2025</div>
+                            <h3>Técnico de Suporte Informático</h3>
+                            <p>Instituto de Transportes e Comunicações</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="date">2020 - 2023</div>
+                            <h3>Curso de Desenvolvimento Web</h3>
+                            <p>Plataformas online (Udemy, FreeCodeCamp, YouTube)</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Projetos Destacados</h2>
+                    <div class="projects">
+                        <div class="project-card">
+                            <h3>E-commerce Responsivo</h3>
+                            <p>Site de e-commerce completo com carrinho de compras e integração com API de pagamentos.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">Node.js</span>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3>App de Previsão do Tempo</h3>
+                            <p>Aplicação web para consulta de previsão do tempo usando API externa com interface intuitiva.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">API</span>
+                                <span class="tech-tag">CSS3</span>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3>Portfólio Pessoal</h3>
+                            <div class="tech-tags">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <button class="print-btn" onclick="window.print()">Imprimir / Salvar como PDF</button>
+    </div>
+
+    <script>
+        // Funcionalidade para alternar entre modo claro e escuro
+        const themeToggle = document.getElementById('themeToggle');
+        const icon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // Animação para as barras de habilidades
+        document.addEventListener('DOMContentLoaded', () => {
+            const skillBars = document.querySelectorAll('.skill-level');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.transition = 'width 10s ease-in-out';
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
